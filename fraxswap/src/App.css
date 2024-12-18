@@ -1,0 +1,136 @@
+/* App.css */
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background: linear-gradient(135deg, #c79f31, #47dd39);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Align top instead of center */
+  height: 100vh;
+  overflow-y: auto; /* Enable scrolling on body if needed */
+  padding: 20px;
+}
+
+.App {
+  background: rgba(0, 0, 0, 0.7);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 30px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 900px;
+  text-align: center;
+  transition: all 0.3s ease;
+  max-height: 100vh; /* Ensure it doesn't overflow the window */
+  overflow-y: auto; /* Enable scrolling within App */
+  margin-top: 20px; /* Give it some space from the top */
+}
+
+/* Keep header fixed at the top */
+header {
+  margin-bottom: 30px;
+}
+
+h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #ffeb3b;
+}
+
+button {
+  background-color: #f1ac15;
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  padding: 12px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background-color: #ff3b5e;
+}
+
+button:focus {
+  outline: none;
+}
+
+section {
+  margin-bottom: 40px;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #ffeb3b;
+}
+
+input[type="text"],
+input[type="number"],
+select {
+  width: 100%;
+  padding: 12px;
+  font-size: 16px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  border: 2px solid #7aaf4e;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  transition: border 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus {
+  border-color: #ffeb3b;
+  outline: none;
+}
+
+input[type="text"],
+input[type="number"] {
+  margin-bottom: 10px;
+}
+
+select {
+  font-size: 16px;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+p {
+  margin-top: 10px;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+}
+
+@media (max-width: 768px) {
+  .App {
+    width: 90%;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  input[type="text"],
+  input[type="number"],
+  select {
+    padding: 10px;
+    font-size: 14px;
+  }
+}
