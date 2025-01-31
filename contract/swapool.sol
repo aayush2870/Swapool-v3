@@ -368,6 +368,44 @@ contract RcoinSwap is ERC721, Ownable {
         return (pairReserves.reserveA, pairReserves.reserveB);
     }
 
+    //Adding two functions one will store the price and the other one will be used to fetch realtime price of rcoin in different pools so we can maintain them properly.  
+     
+    function getTokenPriceInInr(address token)
+        internal
+        view
+        returns (uint256 priceInInr)
+    {
+        if (token == maticTokenAddress) {
+            priceInInr = maticInInr();
+        } else if (token == linkTokenAddress) {
+            priceInInr = linkInInr();
+        } else {
+            priceInInr = 1e18; 
+        }
+    }
+
+    function getRcoinAmountInPool(address tokenA, address tokenB)
+        public
+        view
+        returns (uint256 rcoinAmount)
+    {
+        bytes32 pairHash = getPairHash(tokenA, tokenB);
+        uint256 reserveA = reserves[pairHash].reserveA;
+        uint256 reserveB = reserves[pairHash].reserveB;
+
+        // Ensure reserves are not zero
+        require(reserveA > 0 && reserveB > 0, "No liquidity in pool");
+
+        // Get prices for both tokens (in INR)
+        uint256 priceAInInr = getTokenPriceInInr(tokenA);
+        uint256 priceBInInr = getTokenPriceInInr(tokenB);
+
+        // Ensure prices are valid
+        require(priceAInInr > 0 && priceBInInr > 0, "Invalid token price");
+
+        // Calculate the amount of Rcoin in the pool
+        rcoinAmount = reserveA.mul(priceAInInr).div(reserveB);
+    }
     function updateProtocolWallet(address newProtocolWallet)
         external
         onlyOwner
